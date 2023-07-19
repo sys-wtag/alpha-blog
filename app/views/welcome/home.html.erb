@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #004B8D;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #0055A4;
+        }
+        section {
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        section h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        section p {
+            color: #444;
+        }
+        footer {
+            background-color: #444;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Website</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <%= link_to 'About', about_path%>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+    <section>
+        <h2>Discover Our Services</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam orci id libero fringilla, sit amet feugiat lorem porttitor. Curabitur ultrices magna non est tincidunt, ac scelerisque quam fringilla.</p>
+        <p>Phasellus eu diam nec neque placerat condimentum. Fusce tincidunt eros id justo rhoncus, in viverra ipsum pharetra. Aliquam sodales, quam eu fringilla dictum, justo erat dignissim risus, ac aliquam nisi turpis eget dolor.</p>
+    </section>
+    <section>
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id augue eget augue hendrerit eleifend. Proin quis congue nisi. Nam sagittis, nunc eget rhoncus consectetur, mauris nibh iaculis lectus, ac luctus ex felis a est.</p>
+        <p>Vestibulum eu arcu sit amet sem fermentum laoreet non eget justo. Aenean vitae urna sed justo bibendum tristique vel at quam. Proin laoreet ac eros eu tristique. Suspendisse auctor magna vitae posuere consequat.</p>
+    </section>
+    <footer>
+        <p>Contact us at: info@example.com</p>
+    </footer>
+</body>
+</html>
