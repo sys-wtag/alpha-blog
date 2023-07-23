@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root 'welcome#home'
   get 'about', to:'welcome#about'
   resources :articles
+  get '/articles/:id', to:'articles#show'
 end
