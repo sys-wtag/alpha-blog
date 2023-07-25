@@ -8,5 +8,5 @@ class User < ApplicationRecord
               length: { maximum: 103 },
               uniqueness: {case_sensitive: false},
               format: { with: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i , message: "Not a valid email address"}
-
+    has_secure_password
 end
