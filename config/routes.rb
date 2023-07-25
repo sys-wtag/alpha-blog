@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'welcome#home'
   get 'about', to:'welcome#about'
-  resources :articles do
-    resources :comments
-  end
-end
+
+   resources :articles do
+     resources :comments
+   end
+ end
