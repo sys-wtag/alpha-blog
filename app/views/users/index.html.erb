@@ -1,0 +1,21 @@
+<h1>Users</h1>
+
+<%  if @user.length()==0 %>
+   No Users
+   <% else %>
+   <ul>
+  <% @user.each do |u| %>
+    <li>
+     <%= link_to u.username, u%>
+     <small>Created : 
+      <%= time_ago_in_words(u.created_at)%> ago,
+      last updted: <%= time_ago_in_words(u.updated_at)%> ago
+     </small>
+    </li>
+
+  <% end%>
+</ul>
+<% end %></br>
+
+
+<%= link_to "Create New User", signup_path%>
