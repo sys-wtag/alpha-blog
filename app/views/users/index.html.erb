@@ -10,12 +10,11 @@
      <small>Created : 
       <%= time_ago_in_words(u.created_at)%> ago,
       last updted: <%= time_ago_in_words(u.updated_at)%> ago
-     </small>
+     </small></br>
+    <small> <strong> <%= pluralize(u.articles.count , "article") if u.articles %> </strong> </small>
     </li>
-
   <% end%>
 </ul>
 <% end %></br>
-
 
 <%= link_to "Create New User", signup_path%>

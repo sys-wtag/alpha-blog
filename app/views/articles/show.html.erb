@@ -1,5 +1,8 @@
 <h1><%= @article.title %></h1>
 
+<% if @article.user %>
+ <small> <strong> This article was created by <%=@article.user.username%> </strong>  </small>
+<% end %>
 <p><%= @article.description %></p>
 
 
