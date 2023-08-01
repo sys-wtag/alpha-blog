@@ -9,14 +9,19 @@
  <%= @user.email%>
 </div>
 
-<h4> <%= @user.username%>'s Articles </h4>
+<% if @user.articles.size > 0 %>
+<h4> <%=@user.username%>'s Articles </h4>
+<% end %>
 
-<%= render 'articles/article', obj:@user_articles%>
+<%=render 'articles/article', obj:@user_articles%>
 <%= will_paginate @user_articles%></br>
 
 <%= link_to 'Back', users_path%>
+<% if logged_in? && current_user == @user %>
+
 <%= link_to 'Edit', edit_user_path%>
 <%= link_to 'Delete', user_path(@user) , data: {
   turbo_method: :delete,
   turbo_confirm: 'Are you sure?'
 }%> 
+<% end %>

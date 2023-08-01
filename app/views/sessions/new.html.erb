@@ -1,0 +1,23 @@
+<h1>Login</h1>
+
+<%= form_for(:session, url:login_path) do |form| %>
+  <div>
+    <%= form.label :username %><br>
+    <%= form.text_field :username %>
+    
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email , placeholder: "i.e. sara@welldev.io"%><br>
+    
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %><br>
+  <div>
+    <%= form.submit 'Login' %>
+ </div>
+ <%puts current_user.username if logged_in?%>
+<% end %>

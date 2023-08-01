@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:edit, :update, :show ]
+    before_action :require_login, only: [:edit, :update, :show ] 
+    before_action :require_user, except: [:index , :show]
     def index 
         @user = User.paginate(page: params[:page], :per_page => 5)
     end
@@ -8,7 +11,6 @@ class UsersController < ApplicationController
     end
 
     def show 
-        @user = User.find(params[:id])
         @user_articles = @user.articles.paginate(page: params[:page], :per_page => 1 )
     end
 
@@ -16,19 +18,18 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
        
         if @user.save
-            flash[:success] = "Welcome to the alpha blog #{@user.username}"
+            session[:user_id] = @user.id
             redirect_to users_path
         else
             render 'new' , status: :unprocessable_entity
         end
     end
 
-    def edit
-        @user = User.find(params[:id])
+    def edit 
     end
 
     def update
-        @user = User.find(params[:id])
+       
         if @user.update(user_params)
             redirect_to @user
         else
@@ -37,7 +38,6 @@ class UsersController < ApplicationController
     end
     
     def destroy
-        @user = User.find(params[:id])
         @user.destroy
         redirect_to users_path, status: :see_other
     end
@@ -45,5 +45,9 @@ class UsersController < ApplicationController
     private
     def user_params
      params.require(:user).permit(:username, :email, :password)
+    end
+
+    def set_user
+          @user = User.find(params[:id])
     end
 end

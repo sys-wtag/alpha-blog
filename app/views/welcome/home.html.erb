@@ -65,19 +65,13 @@
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
+        <% if logged_in? %>
+        <%= link_to 'Logout', logout_path, data: {turbo_method: :delete} %>
+        <% else %>
+        <%= link_to 'Login', login_path %>
+        <% end %>
     </nav>
-    <section>
-        <h2>Discover Our Services</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam orci id libero fringilla, sit amet feugiat lorem porttitor. Curabitur ultrices magna non est tincidunt, ac scelerisque quam fringilla.</p>
-        <p>Phasellus eu diam nec neque placerat condimentum. Fusce tincidunt eros id justo rhoncus, in viverra ipsum pharetra. Aliquam sodales, quam eu fringilla dictum, justo erat dignissim risus, ac aliquam nisi turpis eget dolor.</p>
-    </section>
-    <section>
-        <h2>About Us</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id augue eget augue hendrerit eleifend. Proin quis congue nisi. Nam sagittis, nunc eget rhoncus consectetur, mauris nibh iaculis lectus, ac luctus ex felis a est.</p>
-        <p>Vestibulum eu arcu sit amet sem fermentum laoreet non eget justo. Aenean vitae urna sed justo bibendum tristique vel at quam. Proin laoreet ac eros eu tristique. Suspendisse auctor magna vitae posuere consequat.</p>
-    </section>
-    <footer>
-        <p>Contact us at: info@example.com</p>
-    </footer>
+    <button> <a href= 'signup'> Signup </a> </button>
+    
 </body>
 </html>
