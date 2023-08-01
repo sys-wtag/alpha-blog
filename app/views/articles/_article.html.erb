@@ -1,0 +1,17 @@
+Our blog has <%= Article.public_count%> articles and counting
+
+<ul>
+  <% obj.each do |article| %>
+  <% unless article.archived?%>
+
+    <li>
+     <%= link_to article.title, article%>
+     <small>Created by: <%= article.user.username if article.user%> ,
+      <%= time_ago_in_words(article.created_at)%> ago,
+      last updted: <%= time_ago_in_words(article.updated_at)%> ago
+     </small>
+    </li>
+
+  <% end%>
+  <% end %>
+</ul>
