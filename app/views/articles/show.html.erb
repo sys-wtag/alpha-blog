@@ -1,12 +1,19 @@
 <h1><%= @article.title %></h1>
-
 <% if @article.user %>
  <small> <strong> This article was created by <%=@article.user.username%> </strong>  </small>
-<% end %>
+<% end %> </br>
+<small>
+
+ <% if @article.categories.any? %>
+  <strong>
+   Categories : <% @categories.each do |category |%>
+    <%= category.name %>
+   <%end%>
+ </strong> 
+ <% end %>
+
+</small>
 <p><%= @article.description %></p>
-
-
-
 <h2> Comments </h2>
 <%= render @article.comments %>
 

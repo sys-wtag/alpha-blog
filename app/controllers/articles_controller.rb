@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
     end
 
     def show 
+      @categories = @article.categories
     end
 
     def create 
@@ -52,7 +53,7 @@ class ArticlesController < ApplicationController
           
 private
   def article_params
-    params.require(:article).permit(:title , :description, :status)
+    params.require(:article).permit(:title , :description, :status, category_ids: [])
   end
 
 end

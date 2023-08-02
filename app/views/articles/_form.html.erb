@@ -22,6 +22,9 @@
   <% article.errors.full_messages_for(:user).each do |message| %>
     <div> <%= message%> </div>
   <%end %>
+  
+  <%= form.label "Select Category"%></br>
+  <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
   <div>
     <%= form.submit %>
   </div>
