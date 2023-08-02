@@ -44,9 +44,10 @@ class ArticlesController < ApplicationController
     end
 
     def require_same_user 
-      current_user != @article.user
-      flash[:error] = "You are not authorized Perfom this action"
-      redirect_to articles_path 
+      if current_user != @article.user and !current_user.admin?
+         flash[:error] = "You are not authorized Perfom this action"
+         redirect_to articles_path 
+      end
     end
           
 private

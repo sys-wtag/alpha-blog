@@ -8,8 +8,13 @@ class SessionsController < ApplicationController
            session[:user_id] = user.id
            redirect_to user_path(user.id)
         else 
+            if User.exists?(params[:session][:email].downcase)
             flash.now[:error] = "There was something wrong with your login information"
             render 'new', status: :unprocessable_entity
+            else
+            flash.now[:error] = "No User Found"
+            render 'new', status: :unprocessable_entity
+             end
         end
     end
 

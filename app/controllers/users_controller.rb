@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:edit, :update, :show ]
+    before_action :set_user, only: [:edit, :update, :show, :destroy ]
     before_action :require_login, only: [:edit, :update, :show ] 
-    before_action :require_user, except: [:new , :create]
+    before_action :require_user, except: [:new , :create, :destroy]
     before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_admin, only: [:destroy]
     def index 
         @user = User.paginate(page: params[:page], :per_page => 5)
     end
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
        
         if @user.save
             session[:user_id] = @user.id
-            redirect_to users_path
+            redirect_to user_path(@user)
         else
             render 'new' , status: :unprocessable_entity
         end
@@ -39,8 +40,15 @@ class UsersController < ApplicationController
     end
     
     def destroy
-        @user.destroy
-        redirect_to users_path, status: :see_other
+        if current_user == @user
+            current_user.destroy
+            session.clear
+            redirect_to root_path
+            flash[:notice] = "Your account has been deleted successfully!"
+        else
+            @user.destroy
+            redirecrt_to users_path, status: :see_other
+        end
     end
 
     private
@@ -49,11 +57,22 @@ class UsersController < ApplicationController
     end
 
     def set_user
+        if User.exists?(params[:id])
           @user = User.find(params[:id])
+        else
+            flash[:error] = "You must be logged in"
+            redirect_to login_path
+        end
     end
 
     def require_same_user 
-        flash[:error] = "Not authorized!"
-        redirect_to users_path if current_user != @user
+        if current_user != @user and !current_user.admin?
+            flash[:error] = "Not authorized!"
+            redirect_to users_path
+        end
+    end
+
+    def require_admin
+        current_user.admin?
     end
 end
