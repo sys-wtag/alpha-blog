@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show ]
     before_action :require_login, only: [:edit, :update, :show ] 
-    before_action :require_user, except: [:index , :show]
+    before_action :require_user, except: [:new , :create]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     def index 
         @user = User.paginate(page: params[:page], :per_page => 5)
     end
@@ -49,5 +50,10 @@ class UsersController < ApplicationController
 
     def set_user
           @user = User.find(params[:id])
+    end
+
+    def require_same_user 
+        flash[:error] = "Not authorized!"
+        redirect_to users_path if current_user != @user
     end
 end
