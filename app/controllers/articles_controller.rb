@@ -55,6 +55,5 @@ private
   def article_params
     params.require(:article).permit(:title , :description, :status, category_ids: [])
   end
-
 end
 
